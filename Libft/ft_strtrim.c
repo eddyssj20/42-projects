@@ -1,50 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 12:58:04 by elorente          #+#    #+#             */
-/*   Updated: 2024/09/25 13:28:35 by elorente         ###   ########.fr       */
+/*   Created: 2024/10/08 11:15:08 by elorente          #+#    #+#             */
+/*   Updated: 2024/10/08 11:48:08 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 #include <stdio.h>
-#include <stddef.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	int	i;
+	int	j;
 
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	if (!dest || !src)
+	if (!s1 || !set)
 		return (NULL);
-	if (s < d && d < s + n)
-	{
-		while (n > 0)
-		{
-			n--;
-			d[n] = s[n];
-		}
-	}
-	else
-	{
-		ft_memcpy(dest, src, n);
-	}
-	return (dest);
+	j = ft_strlen(s1);
+	i = 0;
+	while (ft_strchr(set, s1[i]))
+		i++;
+	while (ft_strchr(set, s1[j - 1]) && j > i)
+		j--;
+	return (ft_substr(s1, i, j - i));
 }
 
 /*
 int	main(void)
 {
-	char str[] = "Hola y Adios";
-	ft_memmove(str + 7, str, 5);
-	printf("%s\n", str);
+	char s1[] = "              aaaaaaaaaaaaaaaaaaa           ";
+	char set[] = " ";
 
+	printf("funciona? '%s'\n", ft_strtrim(s1, set));
 	return (0);
 }
 */
