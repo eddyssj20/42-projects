@@ -6,7 +6,7 @@
 /*   By: elorente <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:17:20 by elorente          #+#    #+#             */
-/*   Updated: 2024/10/09 13:42:23 by elorente         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:31:28 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,25 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int				i;
-	unsigned char	ch;
+	const char	*last;
 
-	i = ft_strlen(s);
-	ch = (unsigned char)c;
-	if (ch == '\0')
-		return ((char *)&s[i]);
-	while (i >= 0)
+	last = NULL;
+	while (*s != '\0')
 	{
-		if (s[i] == ch)
-			return ((char *)&s[i]);
-		i--;
+		if (*s == (char)c)
+			last = s;
+		s++;
 	}
-	return (NULL);
+	if (c == '\0')
+		return ((char *)s);
+	return ((char *)last);
 }
 
 /*
 int	main(void)
 {
 	const char *str = "Yo soy el super saiyajin Goku";
-	int ch = 'G';
+	int ch = 'x';
 	char *r = ft_strrchr(str, ch);
 
 	if(r != NULL)
