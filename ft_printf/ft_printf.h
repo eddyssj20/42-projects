@@ -22,7 +22,7 @@ int	ft_putchar(int c);
 int	ft_putstr(char *s);
 int	ft_putnbr(int nb);
 int	ft_putnbr_unsigned(unsigned int nb);
-int ft_putnbr_hex(unsigned long nb, char *base);
+int	ft_putnbr_hex(unsigned long nb, char *base);
 int	ft_putptr(unsigned long nb);
 
 #endif
