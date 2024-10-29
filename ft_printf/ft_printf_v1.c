@@ -23,10 +23,7 @@ int ft_putstr(char *s)
 
 	i = 0;
 	if (!s)
-	{
-		i += ft_putstr("(NULL)");
-		return (i);
-	}
+		return (write(1, "(NULL)", 6));
 	while (s[i])
 		i += ft_putchar(s[i]);
 	return (i);
@@ -41,32 +38,22 @@ int	ft_putnbr(int nb)
 	counter = 0;
 	if (nb < 0)
 	{
-		num *= -1;
+		num = -nb;
 		counter += ft_putchar('-');
 	}
 	if (num > 9)
-	{
 		counter += ft_putnbr(num / 10);
-		counter += ft_putchar((num % 10) + '0');
-	}
-	else
-		counter += ft_putchar(num +'0');
+	counter += ft_putchar((num % 10) + '0');
 	return (counter);
 }
 
 int	ft_putnbr_unsigned(unsigned int nb)
 {
-	unsigned int	num;
 	int				counter;
 
-	num = nb;
 	counter = 0;
-	if (num > 9)
-	{
-		counter += ft_putnbr_unsigned(num / 10);
-		counter += ft_putchar((num % 10) + '0');
-	}
-	else
-		counter += ft_putchar(num +'0');
+	if (nb > 9)
+		counter += ft_putnbr_unsigned(nb / 10);
+	counter += ft_putchar((nb % 10) + '0');
 	return (counter);
 }

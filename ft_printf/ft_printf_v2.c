@@ -29,18 +29,9 @@ int	ft_putnbr_hex(unsigned long nb, char *base)
 
 int	ft_putptr(unsigned long nb)
 {
-	char	*base;
 	int		counter;
-
-	base = "0123456789abcdef";
-	counter = 2;
-	ft_putstr("0x");
-	if (nb >= 16)
-	{
-		counter += ft_putnbr_hex(nb / 16, base);
-		counter += ft_putchar(base[nb % 16]);
-	}
-	else
-		counter += ft_putchar(base[nb]);
+	
+	counter = ft_putstr("0x");
+	counter += ft_putnbr_hex(nb, "0123456789abcdef");
 	return (counter);
 }
