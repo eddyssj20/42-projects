@@ -12,6 +12,86 @@
 
 #include "get_next_line.h"
 
+int	newline(t_list *list)
+{
+	int	i;
+
+	if (list == NULL)
+		return (0);
+	while (list)
+	{
+		i = 0;
+		while (list->str_buf[i] && i < BUFFER_SIZE)
+		{
+			if (list->str_buf[i] == '\n')
+				return (1);
+			i++;
+		}
+		list = list->next;
+	}
+	return (0);
+}
+
+t_list	*find_last(t_list *list)
+{
+	if (list == NULL)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
+}
+
+void	copy_str(t_list *list, char *str)
+{
+	int	i;
+	int	k;
+
+	if (list == NULL)
+		return ;
+	k = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->str_buf[i])
+		{
+			if (list->str_buf[i] == '\n')
+			{
+				str[k++] = '\n';
+				str[k] = '\0';
+				return ;
+			}
+			str[k++] = list->str_buf[i++];
+		}
+		list = list->next;
+	}
+	str[k] = '\0';
+}
+
+int	len_newline(t_list *list)
+{
+	int	i;
+	int	len;
+
+	if (list == NULL)
+		return (0);
+	len = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->str_buf[i])
+		{
+			if (list->str_buf[i] == '\n')
+				return (++len);
+			i++;
+			len++;
+		}
+		list = list->next;
+	}
+	return (len);
+}
+
+
+
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*list;
@@ -28,7 +108,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*result;
 
-	if (*lst)
+	if (!*lst)
 	{
 		*lst = new;
 		return;
@@ -52,7 +132,7 @@ void	ft_lstclear(t_list **lst)
 	}
 }
 
-int	ft_strchr(const char *s, char c)
+int	ft_strchr_index(const char *s, char c)
 {
 	int	i;
 
