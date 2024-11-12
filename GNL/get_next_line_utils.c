@@ -32,7 +32,7 @@ int	newline(t_list *list)
 	return (0);
 }
 
-t_list	*find_last(t_list *list)
+t_list	*ft_lstlast(t_list *list)
 {
 	if (list == NULL)
 		return (NULL);
@@ -90,77 +90,25 @@ int	len_newline(t_list *list)
 	return (len);
 }
 
-
-
-t_list	*ft_lstnew(void *content)
+void	clean_list(t_list **list, t_list *clean_node, char *buf)
 {
-	t_list	*list;
+	t_list	*tmp;
 
-	list = malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->content = content;
-	list->next = NULL;
-	return (list);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*result;
-
-	if (!*lst)
+	if (*list == NULL)
+		return ;
+	while (*list)
 	{
-		*lst = new;
-		return;
+		tmp = (*list)->next;
+		free((*list)->str_buf);
+		free(*list);
+		*list = tmp;
 	}
-	result = *lst;
-	while (result->next)
-		result = result->next;
-	result->next = new;
-}
-
-void	ft_lstclear(t_list **lst)
-{
-	t_list	*result;
-
-	while (*lst)
+	*list = NULL;
+	if (clean_node->str_buf[0])
+		*list = clean_node;
+	else
 	{
-		result = (*lst)->next;
-		free((*lst)->content);
-		free(*lst);
-		*lst = result;
+		free(buf);
+		free(clean_node);
 	}
-}
-
-int	ft_strchr_index(const char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);	
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	x;
-
-	x = 0;
-	while (str[x] != '\0')
-		x++;
-	return (x);
-}
-
-void	ft_strcat(char *dest, const char *src)
-{
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = '\0';
 }
