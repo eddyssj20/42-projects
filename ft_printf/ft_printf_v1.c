@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:23:51 by elorente          #+#    #+#             */
-/*   Updated: 2024/10/28 11:23:51 by elorente         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:47:56 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	ft_putchar(int c)
 	return (write(1, &c, 1));
 }
 
-int ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
