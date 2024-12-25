@@ -6,7 +6,7 @@
 /*   By: elorente <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 12:46:34 by elorente          #+#    #+#             */
-/*   Updated: 2024/10/07 13:03:23 by elorente         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:26:41 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	i;
 	size_t	j;
 
-	if (!s1 || !s2)
-		return (NULL);
+	i = 0;
+	j = 0;
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	uni = (char *)malloc((len1 + len2 +1) * sizeof(char));
+	if (!s1 && !s2)
+		return (NULL);
+	uni = ft_calloc(len1 + len2 + 1, sizeof(char));
 	if (!uni)
 		return (NULL);
-	i = 0;
-	while (i < len1)
-	{
-		uni[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (j < len2)
-	{
-		uni[i + j] = s2[j];
-		j++;
-	}
-	uni[i + j] = '\0';
+	while (s1[i++])
+		ft_memcpy(uni, s1, len1);
+	while (s2[j++])
+		ft_memcpy(len1 + uni, s2, len2);
 	return (uni);
 }

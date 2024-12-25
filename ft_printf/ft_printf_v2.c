@@ -30,7 +30,7 @@ int	ft_putnbr_hex(unsigned long nb, char *base)
 int	ft_putptr(unsigned long nb)
 {
 	int		counter;
-	
+
 	counter = ft_putstr("0x");
 	counter += ft_putnbr_hex(nb, "0123456789abcdef");
 	return (counter);

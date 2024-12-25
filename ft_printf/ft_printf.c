@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:00:51 by elorente          #+#    #+#             */
-/*   Updated: 2024/10/28 12:00:51 by elorente         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:47:26 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	select_type(va_list parameters, char str)
 		count += ft_putnbr_unsigned(va_arg(parameters, unsigned int));
 	else if (str == 'x')
 		count += ft_putnbr_hex(va_arg(parameters, unsigned int),
-			"0123456789abcdef");
+				"0123456789abcdef");
 	else if (str == 'X')
 		count += ft_putnbr_hex(va_arg(parameters, unsigned int),
-			"0123456789ABCDEF");
+				"0123456789ABCDEF");
 	else if (str == '%')
 		count += ft_putchar(str);
 	return (count);
@@ -42,7 +42,7 @@ int	select_type(va_list parameters, char str)
 
 int	ft_printf(char const *total_str, ...)
 {
-	va_list params;
+	va_list	params;
 	int		counter;
 
 	counter = 0;
