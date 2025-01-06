@@ -44,7 +44,7 @@ char	*get_line(t_list *list)
 
 	if (list == NULL)
 		return (NULL);
-	str_len =len_newline(list);
+	str_len = len_newline(list);
 	next_str = malloc(str_len + 1);
 	if (next_str == NULL)
 		return (NULL);

@@ -44,7 +44,7 @@ char	*get_line(t_list *list)
 
 	if (list == NULL)
 		return (NULL);
-	str_len =len_newline(list);
+	str_len = len_newline(list);
 	next_str = malloc(str_len + 1);
 	if (next_str == NULL)
 		return (NULL);
@@ -52,12 +52,12 @@ char	*get_line(t_list *list)
 	return (next_str);
 }
 
-void	create_node(t_list **list, char *buf)
+void	create_node(t_list **list, char *buf, int fd)
 {
 	t_list	*new_node;
 	t_list	*last_node;
 
-	last_node = ft_lstlast(*list);
+	last_node = ft_lstlast(list[fd]);
 	new_node = malloc(sizeof(t_list));
 	if (new_node == NULL)
 		return ;

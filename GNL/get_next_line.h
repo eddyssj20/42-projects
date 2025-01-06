@@ -21,11 +21,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	char			*str_buf;
 	struct s_list	*next;
-} t_list;
+}	t_list;
 
 char	*get_line(t_list *list);
 char	*get_next_line(int fd);
