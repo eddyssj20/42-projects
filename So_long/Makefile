@@ -1,14 +1,18 @@
 NAME = so_long
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLX = -Lminilibx -lmlx -lXext -lx11 -lm
-SRCS = src/main.c src/utils.c src/game.c
-OBJS = $(SRCS:.c=-o)
+MLX = -Lmlx -lmlx_Linux -L/user/lib -lXext -lX11 -lm -lz
+GNL_DIR = GNL
+SRCS = so_long.c  so_long_utils.c $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+all:  $(NAME)
 
 $(NAME): $(OBJS)
-	$(cc) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME) $(MLX)
+
+%.o: %.c
+	$(CC) -I $(MLX) -I $(GNL_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
