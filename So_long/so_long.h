@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:55:55 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/10 20:56:17 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/14 20:09:03 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "./include/mlx.h"
 #include "./include/get_next_line.h"
+#include "./include/libft.h"
 
 #include <fcntl.h>
 #include <stdlib.h>
@@ -29,15 +30,24 @@ typedef struct s_game
     char        **map;
     int         width;
     int         height;
+    void        *wall;
+    void        *floor;
+    void        *P1;
+    void        *coin;
+    void        *exit;
 }   t_game;
 
-int key_press(int key, t_game *game);
+char    **fill_map(char *ber, char **maparr, t_game *game);
+
+int     key_press(int key, t_game *game);
 int     map_size(char *ber);
 
+void    draw_map(t_game  *game);
 void    free_map(t_game *game);
-void    init_game(t_game *game);
+void    init_game(t_game *game, char *map_file);
+void    load_images(t_game *game);
 void    read_map(char *ber, t_game *game);
-void    draw_map(t_game *game);
+void    draw_sprites(t_game *game, int x, int y);
 void    close_game(t_game *game);
 
 #endif
