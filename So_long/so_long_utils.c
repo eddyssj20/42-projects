@@ -6,18 +6,11 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:24:07 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/14 21:09:13 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:02:20 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int key_press(int key, t_game *game)
-{
-    if (key == 65307)
-        close_game(game);
-    return (0);
-}
 
 void load_images(t_game *game)
 {
@@ -39,12 +32,13 @@ void load_images(t_game *game)
 
 void draw_sprites(t_game *game, int x, int y)
 {
+    mlx_put_image_to_window(game->mlx_father, game->window, game->floor, x * 64, y * 64);
     if (game->map[y][x] == '1')
         mlx_put_image_to_window(game->mlx_father, game->window, game->wall, x * 64, y * 64);
     else if (game->map[y][x] == 'P')
         mlx_put_image_to_window(game->mlx_father, game->window, game->P1, x * 64, y * 64);
-    else if (game->map[y][x] == '0')
-        mlx_put_image_to_window(game->mlx_father, game->window, game->floor, x * 64, y * 64);
+    /*else if (game->map[y][x] == '0')
+        mlx_put_image_to_window(game->mlx_father, game->window, game->floor, x * 64, y * 64);*/
     else if (game->map[y][x] == 'C')
         mlx_put_image_to_window(game->mlx_father, game->window, game->coin, x * 64, y * 64);
     else if (game->map[y][x] == 'E')

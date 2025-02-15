@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:08:13 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/14 20:10:33 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/15 19:46:10 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ void close_game(t_game *game)
 
 void init_game(t_game *game, char *map_file)
 {
+    /*game = malloc(sizeof(t_game));
+    */
     game->mlx_father = mlx_init();
     if (!game->mlx_father)
     {
         perror("Error Minilibx");
         exit (1);
     }
-    game->window = mlx_new_window(game->mlx_father, 1080, 720, "v0.3");
+    game->window = mlx_new_window(game->mlx_father, 1080, 720, "v0.4");
     if (!game->window)
     {
         perror("Error creando window");
