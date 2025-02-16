@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:24:07 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/15 17:02:20 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/16 13:47:15 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,18 @@ void draw_sprites(t_game *game, int x, int y)
         mlx_put_image_to_window(game->mlx_father, game->window, game->wall, x * 64, y * 64);
     else if (game->map[y][x] == 'P')
         mlx_put_image_to_window(game->mlx_father, game->window, game->P1, x * 64, y * 64);
-    /*else if (game->map[y][x] == '0')
-        mlx_put_image_to_window(game->mlx_father, game->window, game->floor, x * 64, y * 64);*/
     else if (game->map[y][x] == 'C')
         mlx_put_image_to_window(game->mlx_father, game->window, game->coin, x * 64, y * 64);
-    else if (game->map[y][x] == 'E')
+    else if (game->map[y][x] == 'E' && game->e_true == 1)
         mlx_put_image_to_window(game->mlx_father, game->window, game->exit, x * 64, y * 64);  
+}
+
+void control_exit(t_game *game)
+{
+	map_pos(game);
+	if (game->total_coins == 0)
+	{
+		game->map[game->e_y][game->e_x] = 'E';
+		game->e_true = 1;
+	}
 }

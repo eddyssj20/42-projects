@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:55:55 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/15 17:55:05 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/16 13:48:11 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,15 @@
 # define K_s 115
 # define K_d 100
 
-typedef struct s_player
-{
-    int     p_x;
-    int     p_y;
-}   t_player;
-
-
 typedef struct s_game
 {
-    struct      s_player player;
+    int         p_x;
+    int         p_y;
+	int			e_x;
+	int			e_y;
+	int			e_true;
+	int			mcount;
+	int			total_coins;
     void        *mlx_father;
     void        *window;
     char        **map;
@@ -59,10 +58,14 @@ int     key_press(int key, t_game *game);
 int     map_pos(t_game *game);
 int     map_size(char *ber);
 
+void	control_exit(t_game *game);
 void    draw_map(t_game  *game);
 void    free_map(t_game *game);
 void    init_game(t_game *game, char *map_file);
 void    load_images(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
 void    move_up(t_game *game);
 void    read_map(char *ber, t_game *game);
 void    draw_sprites(t_game *game, int x, int y);

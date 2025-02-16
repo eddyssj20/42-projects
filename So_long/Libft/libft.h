@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:18:15 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/14 19:32:55 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/16 11:27:45 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,20 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
+# include <stdarg.h>
 
+//ft_printf//
+
+int		select_type(va_list parameters, char complete_str);
+int		ft_printf(char const *total_str, ...);
+int		ft_putchar(int c);
+int		ft_putstr(char *s);
+int		ft_putnbr(int nb);
+int		ft_putnbr_unsigned(unsigned int nb);
+int		ft_putnbr_hex(unsigned long nb, char *base);
+int		ft_putptr(unsigned long nb);
+
+//libft//
 int		ft_atoi(const char *str);
 int		ft_isalnum(int i);
 int		ft_isalpha(int x);
