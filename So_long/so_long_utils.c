@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:24:07 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/16 13:47:15 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:27:23 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void load_images(t_game *game)
 
     if (!game->wall)
     {
-        write(2, "Noooo", 5);
+        ft_printf("No hay sprites");
         exit(1);
     }
 }
@@ -45,10 +45,20 @@ void draw_sprites(t_game *game, int x, int y)
 
 void control_exit(t_game *game)
 {
-	map_pos(game);
 	if (game->total_coins == 0)
 	{
 		game->map[game->e_y][game->e_x] = 'E';
 		game->e_true = 1;
 	}
+}
+
+void init_all(t_game *game)
+{
+	game->mcount = 0;
+	game->width = 0;
+	game->height = 0;
+	game->total_coins = 0;
+	game->c_counter = 0;
+	game->p_counter = 0;
+	game->e_counter = 0;
 }

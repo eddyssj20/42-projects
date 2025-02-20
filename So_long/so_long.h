@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:55:55 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/16 13:48:11 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:28:01 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_game
 	int			e_true;
 	int			mcount;
 	int			total_coins;
+	int			c_counter;
     void        *mlx_father;
     void        *window;
     char        **map;
@@ -50,6 +51,8 @@ typedef struct s_game
     void        *P1;
     void        *coin;
     void        *exit;
+	int			p_counter;
+	int			e_counter;
 }   t_game;
 
 char    **fill_map(char *ber, char **maparr, t_game *game);
@@ -57,12 +60,18 @@ char    **fill_map(char *ber, char **maparr, t_game *game);
 int     key_press(int key, t_game *game);
 int     map_pos(t_game *game);
 int     map_size(char *ber);
+void	map_wall(t_game *game);
+void	valid_map(t_game *game);
 
+void	is_rectangular(t_game *game);
+void 	check_ext(char *map);
 void	control_exit(t_game *game);
 void    draw_map(t_game  *game);
 void    free_map(t_game *game);
+void	init_all(t_game *game);
 void    init_game(t_game *game, char *map_file);
 void    load_images(t_game *game);
+void	map_ok(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);

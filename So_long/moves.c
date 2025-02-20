@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:00:44 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/16 14:09:36 by elorente         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:21:34 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int key_press(int key, t_game *game)
 	else if (key == K_a || key == 65361)
 		move_left(game);
     mlx_clear_window(game->mlx_father, game->window);
-    draw_map(game);
+	draw_map(game);
     return (0);
 }
 
