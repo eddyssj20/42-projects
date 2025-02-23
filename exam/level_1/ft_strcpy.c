@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 20:19:34 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/20 20:30:26 by elorente         ###   ########.fr       */
+/*   Created: 2025/02/23 00:01:00 by elorente          #+#    #+#             */
+/*   Updated: 2025/02/23 00:01:00 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_node
+char *ft_strcpy(char *s1, char *s2)
 {
-	int			value;
-	struct		s_node *next;
-} t_node;
+	int	i;
 
-typedef struct s_stack
-{
-	t_node *top;
-	int size;
-} t_stack;
+	i = 0;
 
-t_stack *init_stack();
-void	push(t_stack *stack, int value);
-int		pop(t_stack *stack);
-void	print_stack(t_stack *stack);
-
-#endif
+	while (s2[i])
+	{
+		s1[i] = s2[i];
+		i++;
+	}
+	s1[i] = '\0';
+	return (s1);
+}

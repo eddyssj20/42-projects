@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   rev_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 20:19:34 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/20 20:30:26 by elorente         ###   ########.fr       */
+/*   Created: 2025/02/23 00:50:50 by elorente          #+#    #+#             */
+/*   Updated: 2025/02/23 00:50:50 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include <unistd.h>
 
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_node
+int	ft_strlen(char *s)
 {
-	int			value;
-	struct		s_node *next;
-} t_node;
+	int	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
-typedef struct s_stack
+void ft_rev_print(char *s)
 {
-	t_node *top;
-	int size;
-} t_stack;
+	int	i = 0;
 
-t_stack *init_stack();
-void	push(t_stack *stack, int value);
-int		pop(t_stack *stack);
-void	print_stack(t_stack *stack);
+	i = ft_strlen(s);
+	while (i > 0)
+	{
+		write (1, &s[i - 1], 1)
+		i--;
+	}
+	write(1, "\n", 1);
+}
 
-#endif
+int main (int argc, char *argv[])
+{
+	if (argc != 2)
+	{
+		write (1, "\n", 1);
+		return (0);
+	}
+	ft_rev_print(argv[1]);
+	return (0);
+}

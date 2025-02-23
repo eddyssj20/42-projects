@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 20:19:34 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/20 20:30:26 by elorente         ###   ########.fr       */
+/*   Created: 2025/02/23 00:12:43 by elorente          #+#    #+#             */
+/*   Updated: 2025/02/23 00:12:43 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_node
+void	ft_swap(int *a, int *b)
 {
-	int			value;
-	struct		s_node *next;
-} t_node;
+	int	temp;
 
-typedef struct s_stack
-{
-	t_node *top;
-	int size;
-} t_stack;
-
-t_stack *init_stack();
-void	push(t_stack *stack, int value);
-int		pop(t_stack *stack);
-void	print_stack(t_stack *stack);
-
-#endif
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
