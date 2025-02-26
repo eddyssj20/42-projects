@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   alpha_mirror.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 00:50:50 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/24 16:52:06 by elorente         ###   ########.fr       */
+/*   Created: 2025/02/24 18:55:35 by elorente          #+#    #+#             */
+/*   Updated: 2025/02/24 19:08:12 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_strlen(char *s)
+void ft_am(char *s)
 {
 	int	i = 0;
+	char c;
 	while (s[i])
 	{
+		if (s[i] >= 'A' && s[i] <= 'Z')
+		{
+			c = 'Z' - (s[i] - 'A');
+			write (1, &c, 1);
+		}
+		else if (s[i] >= 'a' && s[i] <= 'z')
+		{
+			c = 'z' - (s[i] - 'a');
+			write (1, &c, 1);
+		}
+		else
+			write(1, &s[i], 1);
 		i++;
 	}
-	return (i);
+	write (1, "\n", 1);
 }
 
-void ft_rev_print(char *s)
-{
-	int	i = 0;
-
-	i = ft_strlen(s);
-	while (i > 0)
-	{
-		write (1, &s[i - 1], 1);
-		i--;
-	}
-	write(1, "\n", 1);
-}
-
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 		return (0);
 	}
-	ft_rev_print(argv[1]);
+	ft_am(argv[1]);
 	return (0);
 }

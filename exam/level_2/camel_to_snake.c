@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   camel_to_snake.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 00:50:50 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/24 16:52:06 by elorente         ###   ########.fr       */
+/*   Created: 2025/02/24 19:08:16 by elorente          #+#    #+#             */
+/*   Updated: 2025/02/24 19:23:15 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_strlen(char *s)
+void ft_cts(char *s)
 {
 	int	i = 0;
+	char	c;
+	char	u;
+
 	while (s[i])
 	{
+		c = s[i + 1];
+		if(s[i] >= 'A' && s[i] <= 'Z')
+		{
+			write(1, "_", 1);
+			c = s[i] + 32;
+			write (1, &c, 1);
+		}
+		else
+			write(1, &s[i], 1);
 		i++;
 	}
-	return (i);
-}
-
-void ft_rev_print(char *s)
-{
-	int	i = 0;
-
-	i = ft_strlen(s);
-	while (i > 0)
-	{
-		write (1, &s[i - 1], 1);
-		i--;
-	}
-	write(1, "\n", 1);
+	write (1, "\n", 1);
 }
 
 int main (int argc, char *argv[])
@@ -42,6 +41,6 @@ int main (int argc, char *argv[])
 		write (1, "\n", 1);
 		return (0);
 	}
-	ft_rev_print(argv[1]);
+	ft_cts(argv[1]);
 	return (0);
 }

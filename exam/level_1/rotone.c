@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_print.c                                        :+:      :+:    :+:   */
+/*   rotone.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 00:50:50 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/24 16:52:06 by elorente         ###   ########.fr       */
+/*   Created: 2025/02/24 17:20:14 by elorente          #+#    #+#             */
+/*   Updated: 2025/02/24 17:36:51 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_strlen(char *s)
+void ft_rotone(char *s)
 {
-	int	i = 0;
+	int i = 0;
+	char	c;
 	while (s[i])
 	{
+		if (s[i] >= 'A' && s[i] <= 'Z')
+		{
+			c = ((s[i] - 'A' + 1) % 26) + 'A';
+			write(1, &c, 1);
+		}
+		else if (s[i] >= 'a' && s[i] <= 'z')
+		{
+			c = ((s[i] - 'a' + 1) % 26) + 'a';
+			write(1, &c, 1);
+		}
+		else
+			write (1, &s[i], 1);
 		i++;
-	}
-	return (i);
-}
-
-void ft_rev_print(char *s)
-{
-	int	i = 0;
-
-	i = ft_strlen(s);
-	while (i > 0)
-	{
-		write (1, &s[i - 1], 1);
-		i--;
 	}
 	write(1, "\n", 1);
 }
@@ -42,6 +42,6 @@ int main (int argc, char *argv[])
 		write (1, "\n", 1);
 		return (0);
 	}
-	ft_rev_print(argv[1]);
+	ft_rotone(argv[1]);
 	return (0);
 }
