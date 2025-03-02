@@ -1,52 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   hidenp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 23:21:18 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/27 23:21:18 by elorente         ###   ########.fr       */
+/*   Created: 2025/03/01 16:48:56 by elorente          #+#    #+#             */
+/*   Updated: 2025/03/01 16:48:56 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_words(char *str)
+void ft_hide(char *s1, char *s2)
 {
-	int i = 0;
-	int j = 1;
+	int	i = 0;
+	int	j = 0;
 
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	while (str[i])
+	while(s1[i])
 	{
-		if (str[i] != ' ' && str[i] != '\t')
+		while (s2[j] && s2[j] != s1[i])
+			j++;
+		if (!s2[j])
 		{
-			if (!j)
-				write (1, " ", 1);
-			j = 0;
-			while (str[i] && str[i] != ' ' && str[i] != '\t')
-			{	
-				write(1, &str[i], 1);
-				i++;
-			}
+			write (1, "0\n", 2);
+			return;
 		}
-		else
+		j++;
 		i++;
 	}
-	write (1, "\n", 1);
+	write(1, "1", 1);
+	write(1, "\n", 1);
 }
-
-
 
 int main (int argc, char *argv[])
 {
-	if (argc != 2)
+	if (argc != 3)
 	{
-		write(1, "\n", 1);
+		write (1, "\n", 1);
 		return (0);
 	}
-	ft_words(argv[1]);
-	return (0);
+	ft_hide(argv[1], argv[2]);
+	retrun (0);
 }

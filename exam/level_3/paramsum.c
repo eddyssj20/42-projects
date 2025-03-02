@@ -1,52 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   paramsum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 23:21:18 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/27 23:21:18 by elorente         ###   ########.fr       */
+/*   Created: 2025/03/02 12:27:59 by elorente          #+#    #+#             */
+/*   Updated: 2025/03/02 12:27:59 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_words(char *str)
+void ft_putnbr(int n)
 {
-	int i = 0;
-	int j = 1;
-
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	while (str[i])
+	char c;
+	if (n > 0)
 	{
-		if (str[i] != ' ' && str[i] != '\t')
-		{
-			if (!j)
-				write (1, " ", 1);
-			j = 0;
-			while (str[i] && str[i] != ' ' && str[i] != '\t')
-			{	
-				write(1, &str[i], 1);
-				i++;
-			}
-		}
-		else
-		i++;
+		ft_putnbr (n / 10);
 	}
-	write (1, "\n", 1);
+	c = (n % 10) + '0';
+	write (1, &c, 1);
 }
-
-
 
 int main (int argc, char *argv[])
 {
-	if (argc != 2)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	ft_words(argv[1]);
+	(void)argv;
+	ft_putnbr(argc - 1);
+	write (1, "\n", 1);
 	return (0);
 }

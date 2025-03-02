@@ -1,52 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   fprime.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 23:21:18 by elorente          #+#    #+#             */
-/*   Updated: 2025/02/27 23:21:18 by elorente         ###   ########.fr       */
+/*   Created: 2025/03/01 16:34:15 by elorente          #+#    #+#             */
+/*   Updated: 2025/03/01 16:34:15 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-void ft_words(char *str)
+void ft_prime(int n)
 {
-	int i = 0;
-	int j = 1;
+	int	prime;
 
-	while (str[i] == ' ' || str[i] == '\t')
-		i++;
-	while (str[i])
+	prime = 2;
+
+	if (n == 1)
 	{
-		if (str[i] != ' ' && str[i] != '\t')
+		printf("1");
+		return;
+	}
+	while (prime <= n)
+	{
+		if ((n % prime) == 0)
 		{
-			if (!j)
-				write (1, " ", 1);
-			j = 0;
-			while (str[i] && str[i] != ' ' && str[i] != '\t')
-			{	
-				write(1, &str[i], 1);
-				i++;
-			}
+			printf("%d", prime);
+			if (n != prime)
+				printf("*");
+			n /= prime;
 		}
 		else
-		i++;
+			prime++;
 	}
-	write (1, "\n", 1);
+	printf("\n");
+
 }
-
-
 
 int main (int argc, char *argv[])
 {
+	int	n = 0;
 	if (argc != 2)
 	{
-		write(1, "\n", 1);
+		printf("\n");
 		return (0);
 	}
-	ft_words(argv[1]);
+	n = atoi(argv[1]);
+	if (n <= 0)
+	{
+		printf("\n");
+		return (0);
+	}
+	ft_prime(n);
 	return (0);
 }
