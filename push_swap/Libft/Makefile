@@ -5,7 +5,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRCS = libft_v1.c libft_v2.c libft_v3.c libft_v4.c\
 	libft_v5.c libft_v6.c libft_v7.c libft_v8.c\
-	ft_printf_v1.c ft_printf_v2.c
+	ft_printf_v1.c ft_printf_v2.c\
+	get_next_line.c get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:46:23 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 18:07:05 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:12:23 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	valid_map(t_game *game)
 		ft_printf("No hay camino valido");
 		close_game(game);
 	}
-	if (game->p_counter != 1)
+	else if (game->p_counter != 1)
 	{
 		ft_printf("No hay Player");
 		close_game(game);
 	}
-	if (game->e_counter != 1)
+	else if (game->e_counter != 1)
 	{
 		ft_printf("No hay salida %d\n", game->e_counter);
 		close_game(game);
 	}
-	if (game->c_counter != 7)
+	else if (game->c_counter != 7)
 	{
 		ft_printf("No hay suficientes Dragon balls");
 		close_game(game);

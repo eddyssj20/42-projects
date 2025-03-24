@@ -2,24 +2,29 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 L_DIR = Libft
+LIBFT = $(L_DIR)/libft.a
+
 SRCS = push_swap.c
-	$(L_DIR)/libft_v1.c $(L_DIR)/libft_v2.c $(L_DIR)/libft_v3.c $(L_DIR)/libft_v4.c $(L_DIR)/libft_v5.c\
-	$(L_DIR)/libft_v6.c $(L_DIR)/libft_v7.c $(L_DIR)/libft_v8.c $(L_DIR)/ft_printf_v1.c $(L_DIR)/ft_printf_v2.c
 	
 OBJS = $(SRCS:.c=.o)
 
-all:  $(NAME)
+all:  $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(OBJS) -L$(L_DIR) -lft -o $(NAME)
 
 %.o: %.c
-	$(CC) -I $(GNL_DIR) -c $< -o $@
+	$(CC) -I$(L_DIR) -c $< -o $@
+
+$(LIBFT):
+	make -C $(L_DIR)
 
 clean:
 	rm -f $(OBJS)
+	make clean -C $(L_DIR)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(L_DIR)
 
 re: fclean all

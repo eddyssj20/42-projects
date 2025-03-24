@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:08:13 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/18 13:15:29 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:18:48 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "mapa listo", 10);
+		write(2, "Y el mapa?", 10);
 		return (1);
 	}
 	game = ft_calloc(1, sizeof(t_game));

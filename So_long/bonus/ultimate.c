@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:08:54 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/20 21:15:48 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:15:21 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	free_frames(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < 19)
+	while (i <= 19)
 	{
 		if (game->frames[i] != NULL)
 		{

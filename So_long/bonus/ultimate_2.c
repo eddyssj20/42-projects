@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:59:23 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/20 21:12:32 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:06:48 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	load_frames2(t_game *game, int w, int h)
 			"Ast/re_largo_18.xpm", &w, &h);
 	game->frames[19] = mlx_xpm_file_to_image(game->mlx_father,
 			"Ast/re_largo_19.xpm", &w, &h);
+	sprite_check(game);
 }
 
 void	handle_cinema_key(int key, t_game *game)

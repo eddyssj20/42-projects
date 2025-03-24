@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:24:07 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 17:53:22 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:03:57 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	load_images(t_game *game)
 			"Ast/Coin.xpm", &img_x, &img_y);
 	game->exit = mlx_xpm_file_to_image(game->mlx_father,
 			"Ast/Exit.xpm", &img_x, &img_y);
+	sprite_check(game);
 }
 
 void	draw_sprites(t_game *game, int x, int y)

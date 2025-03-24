@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:55:55 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 17:38:11 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:04:45 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void	move_up(t_game *game);
 void	read_map(char *ber, t_game *game);
 void	draw_sprites(t_game *game, int x, int y);
 int		close_game(t_game *game);
+void	sprite_check(t_game *game);
 
 #endif
