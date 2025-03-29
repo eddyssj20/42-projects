@@ -1,50 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   sort_five.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 19:25:15 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/29 17:36:44 by elorente         ###   ########.fr       */
+/*   Created: 2025/03/29 19:19:19 by elorente          #+#    #+#             */
+/*   Updated: 2025/03/29 19:27:19 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(int *stack)
+int	find_min(t_data *data)
 {
-	int	temp;
+	int	i;
+	int	min;
+	int	index;
 
-	temp = stack[0];
-	stack[0] = stack[1];
-	stack[1] = temp;
+	i = 0;
+	min = data->sa[0];
+	index = 0;
+	while(i < data->sizea)
+	{
+		if (data->sa[i] < min)
+		{
+			min = data->sa[i];
+			index = i;
+		}
+		i++;
+	}
+	return (index);
 }
 
-void	sa(int *a)
+void	push_min(t_data *data)
 {
-	swap(a);
-	ft_printf("sa\n");
-}
+	int	index;
 
-void	sb(int *b)
-{
-	swap(b);
-	ft_printf("sb\n");
-}
-
-void	ss(int *a, int *b)
-{
-	swap(a);
-	swap(b);
-	ft_printf("ss\n");
-}
-
-void	swap_int(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	index = find_min(data);
+	if (index == 1)
+		ra(data);
+	else if (index == 2)
+	{
+		ra(data);
+		ra(data);
+	}
+	else if (index == 3 && data->)
 }

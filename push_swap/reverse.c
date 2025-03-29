@@ -6,15 +6,16 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 20:25:29 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/26 20:25:29 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:47:48 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rra(t_list *data)
+void	rra(t_data *data)
 {
 	int	i;
+
 	i = data->sizea - 1;
 	while (i > 0)
 	{
@@ -24,9 +25,10 @@ void	rra(t_list *data)
 	ft_printf("rra\n");
 }
 
-void	rrb(t_list *data)
+void	rrb(t_data *data)
 {
 	int	i;
+
 	i = data->sizeb - 1;
 	while (i > 0)
 	{
@@ -36,7 +38,7 @@ void	rrb(t_list *data)
 	ft_printf("rrb\n");
 }
 
-void	rrr(t_list *data)
+void	rrr(t_data *data)
 {
 	int	i;
 

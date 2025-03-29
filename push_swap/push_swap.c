@@ -6,73 +6,36 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 20:19:11 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/24 11:23:33 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/29 19:10:51 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*new_node(int value)
-{
-	t_stack	*node;
-
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->value = value;
-	node->next = NULL;
-	return (node);
-}
-
-void	push(t_stack **stack, int value)
-{
-	t_stack	*node;
-	
-	node = new_node(value);
-	if (!node)
-		return ;
-	node->next = *stack;
-	*stack = node;
-}
-
-void	print_stack(t_stack *stack)
-{
-	while (stack)
-	{
-		ft_printf("%d ", stack->value);
-		stack = stack->next;
-	}
-	ft_printf("\n");
-}
-
-void free_stack(t_stack **stack)
-{
-	t_stack	*tmp;
-
-	while (*stack)
-	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		free(tmp);
-	}
-	*stack = NULL;
-}
-
 int	main(int argc, char *argv[])
 {
-	t_stack *stack_a;
-	int		i;
-
-	stack_a = NULL;
-	i = 1;
-	while (i < argc)
+	t_data *data;
+	
+	if (argc < 2)
 	{
-		push(&stack_a, ft_atoi(argv[i]));
-		i++;
+		ft_printf("Faltan argumentos\n");
+		return (0);
 	}
-	ft_printf("Stack a:\n");
-	print_stack(stack_a);
-
-	free_stack(&stack_a);
+	data = malloc(sizeof(t_data));
+	if (!data)
+	{
+		ft_printf("Error de memoria\n");
+		return (0);
+	}
+	data->sa = malloc(sizeof(int) * (argc - 1));
+	data->sb = malloc(sizeof(int) * (argc - 1));
+	if (!data->sa || data->sb)
+	{
+		ft_printf("Error de memoria en sa o sb\n");
+		return (1);
+	}
+	parse_args(&data, argc, argv);
+	choose_sort(data);
+	// faltan free //
 	return (0);
 }

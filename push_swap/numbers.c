@@ -1,57 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   numbers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 19:41:35 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/29 17:47:15 by elorente         ###   ########.fr       */
+/*   Created: 2025/03/29 18:07:40 by elorente          #+#    #+#             */
+/*   Updated: 2025/03/29 18:22:37 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_data *data)
+int	numbers_mason(char *s)
 {
 	int	i;
-
-	i = data->sizea;
-	data->sizeb --;
-	data->sizea ++;
-	while (i > 0)
-	{
-		swap_int(&data->sa[i], &data->sa[i - 1]);
-		i--;
-	}
-	data->sa[0] = data->sb[0];
+	
 	i = 0;
-	while (i < data->sizeb)
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	if (s[i] == '\0')
+		return (-1);
+	while (s[i])
 	{
-		data->sb[i] = data->sb[i + 1];
+		if (s[i] < '0' || s[i] > '9')
+			return 	(-1);
 		i++;
 	}
-	ft_printf("pa\n");
+	return (0);
 }
 
-void	pb(t_data *data)
+int	duplikate(t_data *data, int num, int j)
 {
 	int	i;
 
-	i = data->sizeb;
-	data->sizeb ++;
-	data->sizea --;
-	while (i > 0)
+	i = 0;
+	while (i < j)
 	{
-		swap_int(&data->sb[i], &data->sb[i - 1]);
-		i--;
+		if (data->sa[i] == num)
+			return (0);
+		i++;
 	}
-	data->sb[0] = data->sa[0];
+	return (1);
+}
+
+int	check_nums(t_data *data)
+{
+	int	i;
+
 	i = 0;
 	while (i < data->sizea)
 	{
-		data->sa[i] = data->sa[i + 1];
+		if (!duplikate(data, data->sa[i], i))
+			return (-1);
 		i++;
 	}
-	ft_printf("pb\n");
+	return (0);
 }

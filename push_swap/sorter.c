@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorter.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/29 19:03:48 by elorente          #+#    #+#             */
+/*   Updated: 2025/03/29 19:16:35 by elorente         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	choose_sort(t_data *data)
+{
+	if (data->sizea <= 1)
+		return ;
+	else if (data->sizea == 2)
+		sort_two(data);
+	else if (data->sizea == 3)
+		sort_three(data);
+	else if (data->sizea <= 5)
+		sort_five(data);
+}
+void	sort_two(t_data *data)
+{
+	if (data->sa[0] > data->sa[1])
+		sa(data);
+}
+
+void	sort_three(t_data *data)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = data->sa[0];
+	b = data->sa[1];
+	c = data->sa[2];
+	if (a > b && b < c && a < c)
+		sa(data);
+	else if (a > b && b > c)
+	{
+		sa(data);
+		rra(data);
+	}
+	else if (a > b && b < c && a > c)
+		ra(data);
+	else if (a < b && b > c && a < c)
+	{
+		sa(data);
+		ra(data);
+	}
+	else if(a < b && b > c && a > c)
+		rra(data);
+}
