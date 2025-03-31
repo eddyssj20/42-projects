@@ -63,4 +63,8 @@ void	sort_three(t_data *data);
 
 //sort_five.c//
 
+int		find_min(t_data *data):
+void	push_min(t_data *data);
+void	sort_five(t_data *data);
+
 #endif
