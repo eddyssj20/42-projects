@@ -67,4 +67,20 @@ int		find_min(t_data *data):
 void	push_min(t_data *data);
 void	sort_five(t_data *data);
 
+//algoritmo.c//
+
+void	index_value(t_data *data);
+int		find_max(t_data *data);
+void	push_biggest(t_data *data);
+void	chunk_sort(t_data *data);
+void	copy_array(int *dest, int *src, int size);
+void	array_order(int *arr, int *size);
+void	replace_index(t_data *data, int *sorted);
+
+//utils.c//
+
+void	free_for_all(t_data *data, int error);
+
+//Falta phony en makefile//
+
 #endif

@@ -22,6 +22,8 @@ void	choose_sort(t_data *data)
 		sort_three(data);
 	else if (data->sizea <= 5)
 		sort_five(data);
+	else
+		chunk_sort(data);
 }
 void	sort_two(t_data *data)
 {
