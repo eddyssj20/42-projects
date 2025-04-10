@@ -12,32 +12,7 @@
 
 #include "push_swap.h"
 
-void	index_value(t_data *data)
-{
-	int	*sorted;
-
-	sorted = malloc(sizeof(int) * data->sizea)
-	if (!sorted)
-		//free//
-	copy_array(sorted, data->sa, data->sizea);
-	array_order(sorted, data->sizea);
-	replace_index(data, sorted);
-	free(sorted);
-}
-
-void	copy_array(int *dest, int *src, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-}
-
-void	array_order(int *arr, int *size)
+void	array_order(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -109,15 +84,21 @@ void	push_biggest(t_data *data)
 	int	index;
 
 	index = find_max(data);
-	if (index < data->sizeb/2)
+	if (index < data->sizeb / 2)
 	{
-		while (index-- > 0)
+		while (index > 0)
+		{
 			rb(data);
+			index--;
+		}
 	}
 	else
 	{
-		while (index++ < data->sizeb)
+		while (index < data->sizeb)
+		{
 			rrb(data);
+			index++;
+		}
 	}
 	pa(data);
 }
@@ -128,23 +109,23 @@ void	chunk_sort(t_data *data)
 	int	chunk_size;
 	int	chunk_limit;
 	int	pushed;
+	int	total;
 
-	chunks = 5;
+	chunks = n_chunks(data->sizea);
 	chunk_size = data->sizea / chunks;
 	chunk_limit = chunk_size;
 	pushed = 0;
+	total = data->sizea;
 	index_value(data);
-	while (pushed < data->sizea)
+	while (pushed < total)
 	{
-		if (data->sa[0] < chunk_limit)
+		push_chunk(data, chunk_limit, chunk_size, &pushed);
+		if (pushed >= chunk_limit)
 		{
-			pb(data);
-			pushed++;
-		}
-		else
-			ra(data);
-		if (pushed == chunk_limit)
 			chunk_limit += chunk_size;
+			if (chunk_limit > total)
+				chunk_limit = total;
+		}
 	}
 	while (data->sizeb > 0)
 		push_biggest(data);

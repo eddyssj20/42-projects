@@ -21,7 +21,7 @@ int	find_min(t_data *data)
 	i = 0;
 	min = data->sa[0];
 	index = 0;
-	while(i < data->sizea)
+	while (i < data->sizea)
 	{
 		if (data->sa[i] < min)
 		{

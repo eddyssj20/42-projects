@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:59:23 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/21 18:06:48 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:15:59 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	load_frames(t_game *game)
 			"Ast/re_largo_7.xpm", &w, &h);
 	game->frames[7] = mlx_xpm_file_to_image(game->mlx_father,
 			"Ast/re_largo_75.xpm", &w, &h);
+	game->frames[8] = mlx_xpm_file_to_image(game->mlx_father,
+			"Ast/re_largo_8.xpm", &w, &h);
 	load_frames2(game, w, h);
 }
 
 void	load_frames2(t_game *game, int w, int h)
 {
-	game->frames[8] = mlx_xpm_file_to_image(game->mlx_father,
-			"Ast/re_largo_8.xpm", &w, &h);
 	game->frames[9] = mlx_xpm_file_to_image(game->mlx_father,
 			"Ast/re_largo_9.xpm", &w, &h);
 	game->frames[10] = mlx_xpm_file_to_image(game->mlx_father,
@@ -65,6 +65,7 @@ void	load_frames2(t_game *game, int w, int h)
 	game->frames[19] = mlx_xpm_file_to_image(game->mlx_father,
 			"Ast/re_largo_19.xpm", &w, &h);
 	sprite_check(game);
+	frame_check(game);
 }
 
 void	handle_cinema_key(int key, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:34:11 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 17:25:50 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:01:43 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,15 @@ int	check_path(char **tab, t_game *game)
 
 	copy = copy_map(tab, game);
 	if (!copy)
+	{
+		close_game(game);
 		return (0);
+	}
 	fill(copy, game, game->p_y, game->p_x);
 	if (!check_element(tab, copy, game))
 	{
-		ft_printf("No hay camino valido\n");
-		free(copy);
+		ft_printf("Error\nNo hay camino valido\n");
+		free_copy(copy, game->height);
 		close_game(game);
 		return (0);
 	}

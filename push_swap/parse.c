@@ -14,29 +14,73 @@
 
 void	parse_args(t_data *data, int argc, char *argv[])
 {
-	int	i;
-	int	num;
+	int		i;
+	char	**split;
+	int		num;
+	int		j;
 
 	data->sizea = 0;
 	i = 1;
 	while (i < argc)
 	{
-		if (numbers_mason(argv[i]) != 0)
+		split = ft_split(argv[i], ' ');
+		if (!split)
+			free_for_all(data, 1);
+		j = 0;
+		while (split[j])
 		{
-			ft_printf("Argumento invalido\n");
-			// free necesario //
-			exit (1);
+			if (numbers_mason(split[j]) != 0)
+			{
+				free_split(split);
+				free_for_all(data, 1);
+			}
+			num = ft_atoi(split[j]);
+			data->sa[data->sizea++] = num;
+			j++;
 		}
-		num = ft_atoi(argv[i]);
-		data->sa[data->sizea] = num;
-		data->sizea++;
+		free_split(split);
 		i++;
 	}
 	if (check_nums(data) != 0)
-	{
-		ft_printf("Numeros repetidos\n");
-		// free necesario //
-		exit (1);
-	}
+		free_for_all(data, 1);
 	data->sizeb = 0;
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
+}
+
+int	count_numbers(int argc, char *argv[])
+{
+	int		count;
+	int		i;
+	int		j;
+	char	**split;
+
+	count = 0;
+	i = 1;
+	while (i < argc)
+	{
+		split = ft_split(argv[i], ' ');
+		if (!split)
+		{
+			free_split(split);
+			return (-1);
+		}
+		j = 0;
+		while (split[j])
+		{
+			count++;
+			j++;
+		}
+		free_split(split);
+		i++;
+	}
+	return (count);
 }

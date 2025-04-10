@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:24:07 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/18 12:01:35 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:00:33 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	load_images(t_game *game)
 
 void	draw_sprites(t_game *game, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx_father,
-		game->window, game->floor, x * 64, y * 64);
 	if (game->map[y][x] == '1')
 		mlx_put_image_to_window(game->mlx_father,
 			game->window, game->wall, x * 64, y * 64);
@@ -51,6 +49,14 @@ void	draw_sprites(t_game *game, int x, int y)
 	else if (game->map[y][x] == 'E' && game->e_true == 1)
 		mlx_put_image_to_window(game->mlx_father,
 			game->window, game->exit, x * 64, y * 64);
+	else if (game->map[y][x] == '0')
+		mlx_put_image_to_window(game->mlx_father,
+			game->window, game->floor, x * 64, y * 64);
+	else
+	{
+		ft_printf("Error\n Mapa no valido\n");
+		close_game(game);
+	}
 }
 
 void	control_exit(t_game *game)
@@ -78,27 +84,27 @@ void	sprite_check(t_game *game)
 {
 	if (!game->wall)
 	{
-		ft_printf("No hay Wall sprite");
-		exit(1);
+		ft_printf("Error\nNo hay Wall sprite");
+		close_game(game);
 	}
 	if (!game->p1)
 	{
-		ft_printf("No hay goku");
-		exit(1);
+		ft_printf("Error\nNo hay goku");
+		close_game(game);
 	}
 	if (!game->exit)
 	{
-		ft_printf("No hay shen long");
-		exit(1);
+		ft_printf("Error\nNo hay shen long");
+		close_game(game);
 	}
 	if (!game->coin)
 	{
-		ft_printf("No hay dragon ball");
-		exit(1);
+		ft_printf("Error\nNo hay dragon ball");
+		close_game(game);
 	}
 	if (!game->floor)
 	{
-		ft_printf("toca pasto");
-		exit(1);
+		ft_printf("Error\ntoca pasto");
+		close_game(game);
 	}
 }

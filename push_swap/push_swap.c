@@ -14,28 +14,25 @@
 
 int	main(int argc, char *argv[])
 {
-	t_data *data;
-	
+	t_data	*data;
+	int		total;
+
 	if (argc < 2)
-	{
-		ft_printf("Faltan argumentos\n");
 		return (0);
-	}
+	total = count_numbers(argc, argv);
+	if (total <= 0)
+		return (0);
 	data = malloc(sizeof(t_data));
 	if (!data)
-	{
-		ft_printf("Error de memoria\n");
-		return (0);
-	}
-	data->sa = malloc(sizeof(int) * (argc - 1));
-	data->sb = malloc(sizeof(int) * (argc - 1));
-	if (!data->sa || data->sb)
-	{
-		ft_printf("Error de memoria en sa o sb\n");
-		return (1);
-	}
-	parse_args(&data, argc, argv);
+		free_for_all(data, 1);
+	data->sa = malloc(sizeof(int) * total);
+	data->sb = malloc(sizeof(int) * total);
+	if (!data->sa || !data->sb)
+		free_for_all(data, 1);
+	parse_args(data, argc, argv);
 	choose_sort(data);
-	// faltan free //
+	if (!is_sorted(data))
+		free_for_all(data, 1);
+	free_for_all(data, 0);
 	return (0);
 }

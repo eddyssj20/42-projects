@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:00:44 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/13 17:47:22 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:43:16 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	move_up(t_game *game)
 			game->total_coins--;
 		if (newsprite == 'E' && game->total_coins == 0)
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			ft_printf("SAL DE AHI SHENLON Y CUMPLE MI DESEO\n");
 			close_game(game);
 		}
@@ -70,6 +72,8 @@ void	move_down(t_game *game)
 			game->total_coins--;
 		if (newsprite == 'E' && game->total_coins == 0)
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			ft_printf("SAL DE AHI SHENLON Y CUMPLE MI DESEO\n");
 			close_game(game);
 		}
@@ -96,6 +100,8 @@ void	move_right(t_game *game)
 			game->total_coins--;
 		if (newsprite == 'E' && game->total_coins == 0)
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			ft_printf("SAL DE AHI SHENLON Y CUMPLE MI DESEO\n");
 			close_game(game);
 		}
@@ -122,6 +128,8 @@ void	move_left(t_game *game)
 			game->total_coins--;
 		if (newsprite == 'E' && game->total_coins == 0)
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			ft_printf("SAL DE AHI SHENLON Y CUMPLE MI DESEO\n");
 			close_game(game);
 		}

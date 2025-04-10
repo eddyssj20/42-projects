@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:08:13 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/21 18:18:32 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:03:49 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,15 @@ void	init_game(t_game *game, char *map_file)
 	game->mlx_father = mlx_init();
 	if (!game->mlx_father)
 	{
-		perror("Error Minilibx");
-		exit (1);
+		perror("Error\nMinilibx\n");
+		close_game(game);
 	}
 	game->window = mlx_new_window(game->mlx_father,
-			game->width * 64, game->height * 64, "v0.5");
+			game->width * 64, game->height * 64, "re_largo");
 	if (!game->window)
 	{
-		perror("Error creando window");
-		free(game->mlx_father),
-		exit(1);
+		perror("Error\ncreando window\n");
+		close_game(game);
 	}
 	load_images(game);
 	fill_map(map_file, game->map, game);
@@ -75,16 +74,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "Y el mapa?", 10);
+		ft_printf ("Error\nY el mapa?\n");
 		return (1);
 	}
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 	{
-		write(1, "error calloc", 13);
+		ft_printf ("Error\ncalloc\n");
 		return (0);
 	}
-	check_ext(argv[1]);
+	check_ext(game, argv[1]);
 	init_all(game);
 	read_map(argv[1], game);
 	init_game(game, argv[1]);

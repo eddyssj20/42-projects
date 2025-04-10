@@ -25,10 +25,11 @@ void	choose_sort(t_data *data)
 	else
 		chunk_sort(data);
 }
+
 void	sort_two(t_data *data)
 {
 	if (data->sa[0] > data->sa[1])
-		sa(data);
+		sa(data->sa);
 }
 
 void	sort_three(t_data *data)
@@ -41,19 +42,26 @@ void	sort_three(t_data *data)
 	b = data->sa[1];
 	c = data->sa[2];
 	if (a > b && b < c && a < c)
-		sa(data);
+		sa(data->sa);
 	else if (a > b && b > c)
 	{
-		sa(data);
+		sa(data->sa);
 		rra(data);
 	}
 	else if (a > b && b < c && a > c)
 		ra(data);
 	else if (a < b && b > c && a < c)
 	{
-		sa(data);
+		sa(data->sa);
 		ra(data);
 	}
-	else if(a < b && b > c && a > c)
+	else if (a < b && b > c && a > c)
 		rra(data);
+}
+
+int	n_chunks(int size)
+{
+	if (size <= 100)
+		return (5);
+	return (11);
 }

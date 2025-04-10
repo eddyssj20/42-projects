@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:17:05 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/20 21:16:24 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:01:32 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,21 @@ void	display_frames_2(t_game *game)
 	{
 		cinematic_frame(game, 150000);
 		close_game(game);
+	}
+}
+
+void	frame_check(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 19)
+	{
+		if (!game->frames[i])
+		{
+			ft_printf("Error\nNo hay frame %d\n", i);
+			close_game(game);
+		}
+		i++;
 	}
 }

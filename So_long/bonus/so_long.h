@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:55:55 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/21 18:04:08 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/29 16:08:06 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	valid_map(t_game *game);
 void	free_for_all(t_game *game);
 void	free_copy(char **copy, int height);
 void	process_map(char *line, t_game *game, int i);
-char	**allocate_map(char **maparr, char *line, int i, int fd);
-void	get_map_size(char *ber, int *width, int *height);
+char	**allocate_map(t_game *game, char **maparr, char *line, int i);
+void	get_map_size(t_game *game, char *ber, int *width, int *height);
 
 void	fill(char **tab, t_game *game, int y, int x);
 void	is_rectangular(t_game *game);
-void	check_ext(char *map);
+void	check_ext(t_game *game, char *map);
 void	control_exit(t_game *game);
 void	draw_map(t_game *game);
 void	free_map(t_game *game);
@@ -111,5 +111,6 @@ void	loop_control(t_game *game, int *loop, int min, int max);
 void	cinematic_frame(t_game *game, int sleep);
 void	cinematic_step(t_game *game, int sleep);
 void	display_frames_2(t_game *game);
+void	frame_check(t_game *game);
 
 #endif

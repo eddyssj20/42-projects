@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 19:54:06 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 17:40:19 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:59:16 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,23 @@
 
 void	read_map(char *ber, t_game *game)
 {
-	get_map_size(ber, &game->width, &game->height);
+	get_map_size(game, ber, &game->width, &game->height);
 	game->map = ft_calloc(game->height + 1, sizeof(char *));
 	if (!game->map)
 	{
-		ft_printf("Error calloc");
-		exit(1);
+		ft_printf("Error\ncalloc\n");
+		close_game(game);
 	}
 	ft_memset(game->map, 0, (game->height + 1) * sizeof(char *));
 }
 
-char	**allocate_map(char **maparr, char *line, int i, int fd)
+char	**allocate_map(t_game *game, char **maparr, char *line, int i)
 {
 	maparr[i] = ft_strdup(line);
 	if (!maparr[i])
 	{
-		ft_printf("Error fill map");
-		close(fd);
-		exit(1);
+		ft_printf("Error\nFill map\n");
+		close_game(game);
 	}
 	return (maparr);
 }
@@ -65,13 +64,13 @@ char	**fill_map(char *ber, char **maparr, t_game *game)
 	fd = open(ber, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error Fill map 1");
-		exit(1);
+		perror("Error\nFill map 2\n");
+		close_game(game);
 	}
 	while (i < game->height)
 	{
 		line = get_next_line(fd);
-		maparr = allocate_map(maparr, line, i, fd);
+		maparr = allocate_map(game, maparr, line, i);
 		process_map(maparr[i], game, i);
 		free(line);
 		i++;

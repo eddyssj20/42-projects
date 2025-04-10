@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:00:44 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/20 19:34:48 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:44:28 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	move_up(t_game *game)
 		collector(game, newsprite);
 		if (newsprite == 'B')
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			trigger_cinema(game, game->p_x, old_y - 1);
 			return ;
 		}
@@ -77,6 +79,8 @@ void	move_down(t_game *game)
 		collector(game, newsprite);
 		if (newsprite == 'B')
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			trigger_cinema(game, game->p_x, old_y + 1);
 			return ;
 		}
@@ -102,6 +106,8 @@ void	move_right(t_game *game)
 		collector(game, newsprite);
 		if (newsprite == 'B')
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			trigger_cinema(game, old_x + 1, game->p_y);
 			return ;
 		}
@@ -127,6 +133,8 @@ void	move_left(t_game *game)
 		collector(game, newsprite);
 		if (newsprite == 'B')
 		{
+			game->mcount++;
+			ft_printf("Moves: %d\n", game->mcount);
 			trigger_cinema(game, old_x - 1, game->p_y);
 			return ;
 		}

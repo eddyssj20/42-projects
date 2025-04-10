@@ -1,5 +1,5 @@
 NAME = so_long
-NAME_B = Ultimate_so_long
+NAME_B = so_long_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX = -Lmlx -lmlx_Linux -L/user/lib -lXext -lX11 -lm -lz
@@ -43,3 +43,5 @@ fclean: clean
 	make fclean -C $(L_DIR)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus

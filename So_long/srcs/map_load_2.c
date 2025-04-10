@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:22:03 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 17:46:53 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:01:51 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_map(t_game *game)
 	}
 }
 
-void	get_map_size(char *ber, int *width, int *height)
+void	get_map_size(t_game *game, char *ber, int *width, int *height)
 {
 	int		fd;
 	char	*temp;
@@ -38,8 +38,8 @@ void	get_map_size(char *ber, int *width, int *height)
 	fd = open(ber, O_RDONLY);
 	if (fd < 0)
 	{
-		perror ("Error reading map 1");
-		exit (1);
+		perror ("Error\nAbriendo mapa");
+		close_game (game);
 	}
 	temp = get_next_line(fd);
 	while (temp)

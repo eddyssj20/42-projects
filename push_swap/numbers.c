@@ -15,7 +15,7 @@
 int	numbers_mason(char *s)
 {
 	int	i;
-	
+
 	i = 0;
 	if (s[i] == '-' || s[i] == '+')
 		i++;
@@ -24,7 +24,7 @@ int	numbers_mason(char *s)
 	while (s[i])
 	{
 		if (s[i] < '0' || s[i] > '9')
-			return 	(-1);
+			return (-1);
 		i++;
 	}
 	return (0);

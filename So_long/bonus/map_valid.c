@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:46:23 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/17 18:07:38 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:00:08 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,27 @@ void	valid_map(t_game *game)
 	is_rectangular(game);
 	if (!check_path(game->map, game))
 	{
-		ft_printf("No hay camino valido");
+		ft_printf("Error\nMapa no valido\n");
 		close_game(game);
 	}
 	if (game->p_counter != 1)
 	{
-		ft_printf("No hay Player");
+		ft_printf("Error\nMapa no valido\n");
 		close_game(game);
 	}
 	if (game->e_counter != 1)
 	{
-		ft_printf("No hay salida %d\n", game->e_counter);
+		ft_printf("Error\nUsa solo 1 salida %d\n", game->e_counter);
 		close_game(game);
 	}
-	if (game->c_counter != 7)
+	if (game->c_counter <= 0)
 	{
-		ft_printf("No hay suficientes Dragon balls");
+		ft_printf("Error\nNo hay suficientes Dragon balls\n");
 		close_game(game);
 	}
 }
 
-void	check_ext(char *map)
+void	check_ext(t_game *game, char *map)
 {
 	char	*name_ext;
 	char	*ext;
@@ -47,9 +47,9 @@ void	check_ext(char *map)
 	name_ext = ft_substr(map, (ft_strlen(map) - 4), 4);
 	if (ft_strncmp(name_ext, ext, ft_strlen(name_ext)) != 0)
 	{
-		ft_printf("No es archivo ber");
-		exit (1);
+		ft_printf("Error\nNo es archivo ber\n");
 		free(name_ext);
+		close_game(game);
 	}
 	free (name_ext);
 }
@@ -94,7 +94,7 @@ void	map_wall(t_game *game)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
 		{
-			ft_printf("Faltan paredes");
+			ft_printf("Error\nFaltan paredes\n");
 			close_game(game);
 		}
 		i++;
@@ -103,7 +103,7 @@ void	map_wall(t_game *game)
 	{
 		if (game->map[0][j] != '1' || game->map[game->height - 1][j] != '1')
 		{
-			ft_printf("Faltan paredes");
+			ft_printf("Error\nFaltan paredes\n");
 			close_game(game);
 		}
 		j++;
@@ -117,11 +117,16 @@ void	is_rectangular(t_game *game)
 
 	w = ft_strlen(game->map[0]);
 	i = 0;
+	if (w > 30 || game->height > 30)
+	{
+		printf("Error\nMapa muy grande\n");
+		close_game(game);
+	}
 	while (i < game->height)
 	{
 		if (ft_strlen(game->map[i]) != w)
 		{
-			ft_printf("Mapa no es rectangular");
+			ft_printf("Error\nMapa no valido\n");
 			close_game(game);
 		}
 		i++;

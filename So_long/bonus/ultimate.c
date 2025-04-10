@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:08:54 by elorente          #+#    #+#             */
-/*   Updated: 2025/03/21 18:15:21 by elorente         ###   ########.fr       */
+/*   Updated: 2025/03/31 13:45:40 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	collector(t_game *game, char newsprite)
 		game->total_coins--;
 	if (newsprite == 'E' && game->total_coins == 0)
 	{
+		game->mcount++;
+		ft_printf("Moves: %d\n", game->mcount);
 		ft_printf("SAL DE AHI SHENLON Y CUMPLE MI DESEO\n");
 		close_game(game);
 	}
