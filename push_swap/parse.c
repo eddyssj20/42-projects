@@ -12,12 +12,29 @@
 
 #include "push_swap.h"
 
+void	parse_split(t_data *data, char **split)
+{
+	int	j;
+	int	num;
+
+	j = 0;
+	while (split[j])
+	{
+		if (numbers_mason(split[j]) == 0)
+		{
+			free_split(split);
+			free_for_all(data, 1);
+		}
+		num = ft_atoi(split[j]);
+		data->sa[data->sizea++] = num;
+		j++;
+	}
+}
+
 void	parse_args(t_data *data, int argc, char *argv[])
 {
 	int		i;
 	char	**split;
-	int		num;
-	int		j;
 
 	data->sizea = 0;
 	i = 1;
@@ -26,18 +43,7 @@ void	parse_args(t_data *data, int argc, char *argv[])
 		split = ft_split(argv[i], ' ');
 		if (!split)
 			free_for_all(data, 1);
-		j = 0;
-		while (split[j])
-		{
-			if (numbers_mason(split[j]) != 0)
-			{
-				free_split(split);
-				free_for_all(data, 1);
-			}
-			num = ft_atoi(split[j]);
-			data->sa[data->sizea++] = num;
-			j++;
-		}
+		parse_split(data, split);
 		free_split(split);
 		i++;
 	}

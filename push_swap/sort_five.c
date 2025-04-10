@@ -38,20 +38,16 @@ void	push_min(t_data *data)
 	int	index;
 
 	index = find_min(data);
-	if (index == 1)
-		ra(data);
-	else if (index == 2)
+	if (index <= data->sizea / 2)
 	{
-		ra(data);
-		ra(data);
+		while (index -- > 0)
+			ra(data);
 	}
-	else if (index == 3 && data->sizea == 5)
+	else
 	{
-		rra(data);
-		rra(data);
+		while (index ++ < data->sizea)
+			rra(data);
 	}
-	else if (index == 4 && data->sizea == 5)
-		rra(data);
 	pb(data);
 }
 

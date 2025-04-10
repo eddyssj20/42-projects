@@ -30,6 +30,8 @@ int	main(int argc, char *argv[])
 	if (!data->sa || !data->sb)
 		free_for_all(data, 1);
 	parse_args(data, argc, argv);
+	if (is_sorted(data))
+		free_for_all(data, 0);
 	choose_sort(data);
 	if (!is_sorted(data))
 		free_for_all(data, 1);

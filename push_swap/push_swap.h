@@ -15,6 +15,9 @@
 
 # include "./Libft/libft.h"
 
+# define MAX 2147483647
+# define MIN -2147483648
+
 typedef struct s_data
 {
 	int		*sa;
@@ -47,7 +50,7 @@ void	rrr(t_data *data);
 
 //numbers.c//
 
-int		numbers_mason(char *s);
+int		numbers_mason(const char *str);
 int		duplikate(t_data *data, int num, int j);
 int		check_nums(t_data *data);
 
@@ -56,6 +59,7 @@ int		check_nums(t_data *data);
 void	parse_args(t_data *data, int argc, char *argv[]);
 void	free_split(char **split);
 int		count_numbers(int argc, char *argv[]);
+void	parse_split(t_data *data, char **split);
 
 //sorter.c//
 
@@ -85,7 +89,5 @@ void	index_value(t_data *data);
 void	copy_array(int *dest, int *src, int size);
 int		is_sorted(t_data *data);
 void	push_chunk(t_data *data, int limit, int size, int *pushed);
-
-//Falta phony en makefile//
 
 #endif

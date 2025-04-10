@@ -12,22 +12,33 @@
 
 #include "push_swap.h"
 
-int	numbers_mason(char *s)
+int	numbers_mason(const char *str)
 {
-	int	i;
+	long	result;
+	int		sign;
+	int		i;
 
+	result = 0;
 	i = 0;
-	if (s[i] == '-' || s[i] == '+')
-		i++;
-	if (s[i] == '\0')
-		return (-1);
-	while (s[i])
+	sign = 1;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (s[i] < '0' || s[i] > '9')
-			return (-1);
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (0);
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		result = result * 10 + (str[i++] - '0');
+	}
+	result *= sign;
+	if (result < MIN || result > MAX)
+		return (0);
+	return (1);
 }
 
 int	duplikate(t_data *data, int num, int j)
