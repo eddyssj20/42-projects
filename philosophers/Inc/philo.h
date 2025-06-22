@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 
+# include <pthread.h>
 # include <stdlib.h>
 # include <stdio.h>
 
@@ -40,5 +41,16 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 }	t_data;
+
+//parse.c
+
+int		parse_arguments(int argc, char *argv[], t_data *data);
+
+//utils.c
+
+int		is_digit_str(char *str);
+long	ft_atol(const char *str);
+int		error_msg(char *msg);
+int		ft_strlen(char *str);
 
 #endif
