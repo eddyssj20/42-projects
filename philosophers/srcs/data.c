@@ -12,3 +12,33 @@
 
 #include "../Inc/philo.h"
 
+int	init_data(t_data *data)
+{
+	int	i;
+
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
+	data->philos = malloc(sizeof(t_philosopher) * data->num_philos);
+	if (!data->forks || !data->philos)
+		return (1);
+	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
+		return (1);
+	i = 0;
+	while (1 < data->num_philos)
+	{
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			return (1);
+		i++;
+	}
+	i = 0;
+	while (i < data->num_philos)
+	{
+		data->philos[i].id = i + 1;
+		data->philos[i].meals_eaten = 0;
+		data->philos[i].last_meal = 0;
+		data->philos[i].data = data;
+		data->philos[i].left_fork = &data->forks[i];
+		data->philos[i].right_fork = &data->forks[(i + 1) % data->num_philos];
+		i++;
+	}
+	return (0);
+}

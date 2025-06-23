@@ -53,3 +53,14 @@ int	ft_strlen(char *str)
 		x++;
 	return (x);
 }
+
+void	print_status(t_philosopher *philo, char *msg)
+{
+	long	timestamp;
+
+	pthread_mutex_lock(&philo->data->print_mutex);
+	timestamp = get_time_in_ms() - philo->data->start_time;
+	if (!philo->data->sim_end)
+		printf("%ld %d %s\n", timestamp, philo->id, msg);
+	pthread_mutex_unlock(&philo->data->print_mutex);
+}
