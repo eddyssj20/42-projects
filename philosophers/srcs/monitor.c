@@ -33,8 +33,8 @@ void	*monitor_routine(void *arg)
 	t_data	*data;
 	int		i;
 
-	data = (t_data *)args;
-	while (!data->simulation_end)
+	data = (t_data *)arg;
+	while (!data->sim_end)
 	{
 		i = 0;
 		while (i < data->num_philos)

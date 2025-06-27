@@ -14,21 +14,36 @@
 
 int	init_data(t_data *data)
 {
-	int	i;
-
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
 	data->philos = malloc(sizeof(t_philosopher) * data->num_philos);
 	if (!data->forks || !data->philos)
 		return (1);
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 		return (1);
+	if (init_forks(data))
+		return (1);
+	init_philos(data);
+	return (0);
+}
+
+int	init_forks(t_data *data)
+{
+	int	i;
+
 	i = 0;
-	while (1 < data->num_philos)
+	while (i < data->num_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+void	init_philos(t_data *data)
+{
+	int	i;
+
 	i = 0;
 	while (i < data->num_philos)
 	{
@@ -40,5 +55,4 @@ int	init_data(t_data *data)
 		data->philos[i].right_fork = &data->forks[(i + 1) % data->num_philos];
 		i++;
 	}
-	return (0);
 }

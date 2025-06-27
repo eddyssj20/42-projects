@@ -14,6 +14,8 @@
 # define PHILO_H
 
 # include <pthread.h>
+# include <sys/time.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 
@@ -52,5 +54,33 @@ int		is_digit_str(char *str);
 long	ft_atol(const char *str);
 int		error_msg(char *msg);
 int		ft_strlen(char *str);
+void	print_status(t_philosopher *philo, char *msg);
+
+//cleanup.c
+
+void	cleanup(t_data *data);
+
+//data.c
+
+int		init_data(t_data *data);
+int		init_forks(t_data *data);
+void	init_philos(t_data *data);
+
+//monitor.c
+
+int		all_philos_have_eaten(t_data *data);
+void	*monitor_routine(void *arg);
+
+//routine.c
+
+void	take_forks(t_philosopher *philo);
+void	eat(t_philosopher *philo);
+void	sleep_and_think(t_philosopher *philo);
+
+//sim.c
+
+long	get_time_in_ms(void);
+void	*philosopher_routine(void *arg);
+int		start_simulation(t_data *data);
 
 #endif

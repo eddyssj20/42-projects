@@ -25,9 +25,18 @@ void	*philosopher_routine(void *arg)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)arg;
+	if (philo->data->num_philos == 1)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		print_status(philo, "Tomo un tenedor");
+		usleep(philo->data->time_to_die * 1000);
+		pthread_mutex_unlock(philo->left_fork);
+		philo->data->sim_end = 1;
+		return (NULL);
+	}
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (!philo->data->simulation_end)
+	while (!philo->data->sim_end)
 	{
 		take_forks(philo);
 		eat(philo);
@@ -46,7 +55,7 @@ int	start_simulation(t_data *data)
 	while (i < data->num_philos)
 	{
 		data->philos[i].last_meal = data->start_time;
-		if (pthread_create(&data->philos[i].thread, NUll,
+		if (pthread_create(&data->philos[i].thread, NULL,
 				&philosopher_routine, &data->philos[i]) != 0)
 			return (1);
 		i++;

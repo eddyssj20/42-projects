@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 		return (error_msg("Error: argumentos invalidos\n"));
 	if (init_data(&data) != 0)
 		return (error_msg("Error: fallo inicializacion\n"));
-	if (start_philo(&data) != 0)
+	if (start_simulation(&data) != 0)
 		return (error_msg("Error: fallo Philo\n"));
 	cleanup(&data);
 	return (0);
