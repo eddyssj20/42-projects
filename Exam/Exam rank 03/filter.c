@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 21:00:27 by elorente          #+#    #+#             */
-/*   Updated: 2025/07/03 21:37:43 by elorente         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:53:35 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	char	*res;
+	char	*value;
 	int		j = 0;
+	value = argv[1];
 	res = malloc(1000);
-	j = read(0, res, BUFFER);
-	while (j > 0)
+	while ((j = read(0, res, 1000)) > 0)
 	{
 		res[j] = '\0';
-		replace(res, argv[1]);
-		j = read(0, res, BUFFER);
+		replace(res, value);
 	}
 	free (res);
 	return (0);

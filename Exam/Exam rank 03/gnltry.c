@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   gnltry.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 18:51:40 by elorente          #+#    #+#             */
-/*   Updated: 2025/09/25 17:23:21 by elorente         ###   ########.fr       */
+/*   Created: 2025/09/25 17:14:56 by elorente          #+#    #+#             */
+/*   Updated: 2025/09/25 17:19:45 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BUFFER_SIZE 10
 #endif
 
-char	*get_next_line(int fd)
+char	*gnl(int fd)
 {
 	char	c;
 	int		i = 0;
@@ -29,9 +29,8 @@ char	*get_next_line(int fd)
 	if (fd < 0)
 		return NULL;
 
-	char	*res = malloc(1000000);
-	
-	while ((leido  = read(fd, &c, 1)) > 0)
+	char	*res = malloc(BUFFER_SIZE);
+	while((leido = read(fd, &c, 1)) > 0)
 	{
 		res[i] = c;
 		i++;
@@ -41,25 +40,8 @@ char	*get_next_line(int fd)
 	if (i == 0 || leido < 0)
 	{
 		free(res);
-		return (NULL);
+		return NULL;
 	}
 	res[i] = '\0';
 	return (res);
-}
-
-int main (int arcg, char *argv[])
-{
-	int		fd = 0;
-	char	*line;
-
-	if (arcg > 1)
-		fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		printf("line = %s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (0);
 }
