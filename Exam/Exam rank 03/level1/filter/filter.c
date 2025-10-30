@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 21:00:27 by elorente          #+#    #+#             */
-/*   Updated: 2025/09/25 20:53:35 by elorente         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:50:49 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,47 @@ void	replace(char *str, char *value)
 
 int	main(int argc, char *argv[])
 {
-	if (argc != 2)
+	if (argc != 2 || argv[1][0] == '\0')
 	{
 		printf("Error: No hay suficientes argumentos\n");
 		return (1);
 	}
-	char	*res;
-	char	*value;
-	int		j = 0;
-	value = argv[1];
-	res = malloc(1000);
-	while ((j = read(0, res, 1000)) > 0)
+
+	char	temp[BUFFER];
+	char	*res = NULL;
+	char	*buff;
+	int		leido = 0;
+	int		b_leido;
+	int		i;
+
+	while ((b_leido = read(0, temp, BUFFER)) > 0)
 	{
-		res[j] = '\0';
-		replace(res, value);
+		buff = realloc(res, (size_t)leido + (size_t)b_leido + 1);
+		if (!buff)
+		{
+			printf("ERROR: realloc");
+			free(res);
+			return (1);
+		}
+		res = buff;
+		i = 0;
+		while (i < b_leido)
+		{
+			res[leido + i] = temp[i];
+			i++;
+		}
+		leido += b_leido;
+		res[leido] = '\0';
 	}
-	free (res);
+	if (b_leido < 0)
+	{
+		printf("Error leyendo");
+		free(res);
+		return (1);
+	}
+	if (!res)
+		return (0);
+	replace(res, argv[1]);
+	free(res);
 	return (0);
 }
