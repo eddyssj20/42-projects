@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:39:40 by elorente          #+#    #+#             */
-/*   Updated: 2025/06/27 18:04:25 by elorente         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:59:48 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,14 @@ void	eat(t_philosopher *philo)
 	long	timestamp;
 
 	if (philo->data->sim_end)
-	{
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
 		return ;
-	}
+	pthread_mutex_lock(&philo->data->print_mutex);
+	timestamp = get_time_in_ms() - philo->data->start_time;
+	printf("%ld philo %d ñom ñom ñom (esta comiendo %d)\n",
+		timestamp, philo->id, philo->meals_eaten + 1);
+	pthread_mutex_unlock(&philo->data->print_mutex);
 	philo->last_meal = get_time_in_ms();
 	philo->meals_eaten++;
-	pthread_mutex_lock(&philo->data->print_mutex);
-	if (!philo->data->sim_end)
-	{
-		timestamp = get_time_in_ms() - philo->data->start_time;
-		printf("%ld philo %d ñom ñom ñom (esta comiendo %d)\n",
-			timestamp, philo->id, philo->meals_eaten);
-	}
-	if (all_philos_have_eaten(philo->data))
-		philo->data->sim_end = 1;
-	pthread_mutex_unlock(&philo->data->print_mutex);
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);

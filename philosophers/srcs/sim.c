@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:26:08 by elorente          #+#    #+#             */
-/*   Updated: 2025/06/27 17:57:45 by elorente         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:59:50 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	*philosopher_routine(void *arg)
 		print_status(philo, "Tomo un tenedor");
 		usleep(philo->data->time_to_die * 1000);
 		pthread_mutex_unlock(philo->left_fork);
-		print_status(philo, "pal lobby");
 		philo->data->sim_end = 1;
 		return (NULL);
 	}

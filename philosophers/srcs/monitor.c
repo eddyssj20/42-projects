@@ -6,7 +6,7 @@
 /*   By: elorente <elorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:02:04 by elorente          #+#    #+#             */
-/*   Updated: 2025/06/27 18:01:58 by elorente         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:02:04 by elorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,22 @@ void	*monitor_routine(void *arg)
 		while (i < data->num_philos)
 		{
 			if ((get_time_in_ms() - data->philos[i].last_meal)
-				> data->time_to_die)
+			> data->time_to_die)
 			{
 				pthread_mutex_lock(&data->print_mutex);
-				printf("%ld %d pal lobby\n",
-					get_time_in_ms() - data->start_time, data->philos[i].id);
+				printf("%ld %d pal lobby\n", get_time_in_ms() - data->start_time,
+					data->philos[i].id);
 				data->sim_end = 1;
-				return (pthread_mutex_unlock(&data->print_mutex), NULL);
+				pthread_mutex_unlock(&data->print_mutex);
+				return (NULL);
 			}
 			i++;
 		}
 		if (all_philos_have_eaten(data))
-			return (data->sim_end = 1, NULL);
+		{
+			data->sim_end = 1;
+			return (NULL);
+		}
 		usleep(1000);
 	}
 	return (NULL);
